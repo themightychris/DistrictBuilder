@@ -1,4 +1,4 @@
-Django==1.4.1
+Django==1.4.22
 celery==3.1.25
 django-celery==3.0.11
 django-staticfiles==1.2.1
