@@ -1,3 +1,6 @@
+
+# much inspiration from https://github.com/habitat-sh/habitat/issues/1514
+
 pkg_name=DistrictBuilder
 pkg_origin=codeforphilly
 pkg_maintainer="Chris Alfano <chris@codeforphilly.org>"
@@ -10,13 +13,12 @@ pkg_license=('Apache-2.0')
 #pkg_shasum="98127fc80354e7e92aa491643214cac5a29f748cc4a15376a4570e2ce017fcea"
 
 pkg_deps=(
-  python2/python
+  core/python2
   core/cacerts
   jarvus/postgresql
 )
 
 pkg_build_deps=(
-  python2/pip
   core/virtualenv
   core/git
   core/coreutils
@@ -41,8 +43,9 @@ do_before() {
 }
 
 do_prepare() {
+  # Does this help with anything? Seen in habitat#1514
+  #pip install --upgrade pip virtualenv
   virtualenv "$pkg_prefix"
-  # shellcheck source=/dev/null
   source "$pkg_prefix/bin/activate"
 }
 
@@ -56,11 +59,5 @@ do_install() {
   export PIP_CERT="$(pkg_path_for cacerts)/ssl/certs/cacert.pem"
   export SYSTEM_CERTIFICATE_PATH="$(pkg_path_for cacerts)/ssl/certs"
 
-  attach
-
   pip install -r requirements.txt
-
-  attach
-
-  return $?
 }
