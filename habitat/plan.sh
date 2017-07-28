@@ -46,6 +46,10 @@ do_build() {
 
   attach
 
+  # needed because the 1.1.7 version specified in requirements.txt isn't available in PIP
+  pip install http://effbot.org/downloads/Imaging-1.1.7.tar.gz
+
+  # install remaining deps
   pip install -r requirements.txt
 
   attach
