@@ -8,10 +8,10 @@ inflect==0.2.3
 xhtml2pdf==0.0.4
 django-compressor==1.2
 python-sld==1.0.9
-numpy==1.6.2
+numpy==1.13.1
 scipy==0.19.1
 http://effbot.org/downloads/Imaging-1.1.7.tar.gz
-PySAL==1.5.0
+PySAL==1.13.0
 git+git://github.com/PublicMapping/modestmaps-py.git@db-mod_1.4
 git+git://github.com/PublicMapping/django-rosetta.git@db-mod_2.0
 redis==2.7.6
