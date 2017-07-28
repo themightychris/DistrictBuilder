@@ -37,11 +37,10 @@ do_before() {
 }
 
 do_build() {
-  # Needed because I didn't find a way to pass cacerts to python's HTTP lib, also tried:
-  # - pip --cert `hab pkg path core/cacerts`/ssl/certs/cacert.pem install -r requirements.txt
-  # - export PIP_CERT=`hab pkg path core/cacerts`/ssl/certs/cacert.pem
-  # - export SYSTEM_CERTIFICATE_PATH="$(pkg_path_for cacerts)/ssl/certs"
-  export PYTHONHTTPSVERIFY=0
+  # shove alternative root cert location everywhere python things look for it
+  export SSL_CERT_FILE="$(pkg_path_for cacerts)/ssl/certs/cacert.pem"
+  export PIP_CERT="$(pkg_path_for cacerts)/ssl/certs/cacert.pem"
+  export SYSTEM_CERTIFICATE_PATH="$(pkg_path_for cacerts)/ssl/certs"
 
   attach
 
