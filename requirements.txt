@@ -1,5 +1,5 @@
 Django==1.4.1
-celery==3.0.15
+celery==3.1.25
 django-celery==3.0.11
 django-staticfiles==1.2.1
 django-tagging==0.3.1
