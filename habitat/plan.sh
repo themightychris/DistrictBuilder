@@ -17,6 +17,7 @@ pkg_deps=(
 
 pkg_build_deps=(
   python2/pip
+  core/virtualenv
   core/git
   core/coreutils
   core/gcc
@@ -39,11 +40,23 @@ do_before() {
   update_pkg_version
 }
 
+do_prepare() {
+  virtualenv "$pkg_prefix"
+  # shellcheck source=/dev/null
+  source "$pkg_prefix/bin/activate"
+}
+
 do_build() {
+  return 0
+}
+
+do_install() {
   # shove alternative root cert location everywhere python things look for it
   export SSL_CERT_FILE="$(pkg_path_for cacerts)/ssl/certs/cacert.pem"
   export PIP_CERT="$(pkg_path_for cacerts)/ssl/certs/cacert.pem"
   export SYSTEM_CERTIFICATE_PATH="$(pkg_path_for cacerts)/ssl/certs"
+
+  attach
 
   pip install -r requirements.txt
 
