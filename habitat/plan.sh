@@ -58,6 +58,7 @@ do_install() {
   export PIP_CERT="$(pkg_path_for cacerts)/ssl/certs/cacert.pem"
   export SYSTEM_CERTIFICATE_PATH="$(pkg_path_for cacerts)/ssl/certs"
 
+  cp -R django "$pkg_prefix/"
   pip install -r requirements.txt
 }
 
