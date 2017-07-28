@@ -10,12 +10,13 @@ pkg_license=('Apache-2.0')
 #pkg_shasum="98127fc80354e7e92aa491643214cac5a29f748cc4a15376a4570e2ce017fcea"
 
 pkg_deps=(
-  core/python2
+  python2/python
   core/cacerts
   jarvus/postgresql
 )
 
 pkg_build_deps=(
+  python2/pip
   core/git
   core/coreutils
   core/gcc
