@@ -4,20 +4,19 @@ pkg_maintainer="Chris Alfano <chris@codeforphilly.org>"
 pkg_description="DistrictBuilder is web-based, open source software for collaborative redistricting."
 pkg_upstream_url="https://github.com/PublicMapping/DistrictBuilder"
 pkg_license=('Apache-2.0')
-pkg_branch=master
 
 # commented out to use local git source instead
 #pkg_source="https://github.com/PublicMapping/${pkg_name}/archive/v${pkg_version}.tar.gz"
 #pkg_shasum="98127fc80354e7e92aa491643214cac5a29f748cc4a15376a4570e2ce017fcea"
 
 pkg_deps=(
-  core/git
   core/python2
   core/cacerts
   jarvus/postgresql
 )
 
 pkg_build_deps=(
+  core/git
   core/coreutils
   core/gcc
 )
@@ -30,7 +29,7 @@ pkg_version() {
 do_before() {
   do_default_before
 
-  pkg_commit="$(git rev-parse --short ${pkg_branch})"
+  pkg_commit="$(git rev-parse --short HEAD)"
   pkg_last_tag="$(git describe --tags --abbrev=0 ${pkg_commit})"
   pkg_last_version=${pkg_last_tag#v}
 
