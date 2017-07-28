@@ -43,8 +43,7 @@ do_before() {
 }
 
 do_prepare() {
-  # Does this help with anything? Seen in habitat#1514
-  #pip install --upgrade pip virtualenv
+  pip install --upgrade pip virtualenv
   virtualenv "$pkg_prefix"
   source "$pkg_prefix/bin/activate"
 }
