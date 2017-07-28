@@ -20,6 +20,8 @@ pkg_build_deps=(
   core/git
   core/coreutils
   core/gcc
+  core/zlib
+  core/libjpeg-turbo
 )
 
 # build version string dynamically from git state
