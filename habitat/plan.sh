@@ -12,12 +12,6 @@ pkg_license=('Apache-2.0')
 #pkg_source="https://github.com/PublicMapping/${pkg_name}/archive/v${pkg_version}.tar.gz"
 #pkg_shasum="98127fc80354e7e92aa491643214cac5a29f748cc4a15376a4570e2ce017fcea"
 
-pkg_deps=(
-  core/python2
-  core/cacerts
-  jarvus/postgresql
-)
-
 pkg_build_deps=(
   core/virtualenv
   core/git
@@ -25,6 +19,12 @@ pkg_build_deps=(
   core/gcc
   core/zlib
   core/libjpeg-turbo
+)
+
+pkg_deps=(
+  core/python2
+  core/cacerts
+  jarvus/postgresql
 )
 
 # build version string dynamically from git state
