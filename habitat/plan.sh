@@ -45,9 +45,6 @@ do_build() {
   export PIP_CERT="$(pkg_path_for cacerts)/ssl/certs/cacert.pem"
   export SYSTEM_CERTIFICATE_PATH="$(pkg_path_for cacerts)/ssl/certs"
 
-  attach
-
-  # install remaining deps
   pip install -r requirements.txt
 
   attach
