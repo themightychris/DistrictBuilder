@@ -61,3 +61,7 @@ do_install() {
 
   pip install -r requirements.txt
 }
+
+do_strip() {
+  return 0
+}
