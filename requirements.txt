@@ -15,3 +15,4 @@ pysal==1.4.1
 git+git://github.com/PublicMapping/modestmaps-py.git@db-mod_1.4
 git+git://github.com/PublicMapping/django-rosetta.git@db-mod_2.0
 lxml==3.1.2
+psycopg2==2.5.5
