@@ -16,4 +16,5 @@ PySAL==1.13.0
 git+git://github.com/PublicMapping/modestmaps-py.git@db-mod_1.4
 git+git://github.com/PublicMapping/django-rosetta.git@db-mod_2.0
 redis==2.7.6
-
+geos==0.2.1
+psycopg2==2.7.3
