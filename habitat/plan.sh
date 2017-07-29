@@ -31,6 +31,8 @@ pkg_deps=(
   jarvus/postgresql
 )
 
+pkg_bin_dirs=(bin)
+
 # build version string dynamically from git state
 pkg_version() {
   echo "${pkg_last_version}+$(git rev-list ${pkg_last_tag}..${pkg_commit} --count)#${pkg_commit}"
@@ -63,6 +65,7 @@ do_install() {
   export SYSTEM_CERTIFICATE_PATH="$(pkg_path_for cacerts)/ssl/certs"
 
   cp -R django "$pkg_prefix/"
+  cp -R docs "$pkg_prefix/"
 
   export LD_LIBRARY_PATH="$LD_RUN_PATH"
   export LIBRARY_PATH="$LD_RUN_PATH"
@@ -74,6 +77,23 @@ do_install() {
 
   # patch zoneinfo path
   sed -i "s#/usr/share/zoneinfo#$(pkg_path_for tzdata)/share/zoneinfo#" "$pkg_prefix/lib/python2.7/site-packages/django/conf/__init__.py"
+
+  # create wrapper script for setup
+  cat > "$pkg_prefix/bin/districtbuilder-setup" <<- EOM
+#!/bin/sh
+
+source "$pkg_prefix/bin/activate"
+
+export LIBRARY_PATH="\$LIBRARY_PATH:${LD_RUN_PATH}"
+export LD_LIBRARY_PATH="\$LD_LIBRARY_PATH:${LD_RUN_PATH}"
+export LD_RUN_PATH="\$LD_RUN_PATH:${LD_RUN_PATH}"
+
+cd "$pkg_prefix/django/publicmapping"
+
+exec python setup.py "../../docs/config.xsd" "../../config/config.xml"
+EOM
+
+    chmod +x "$pkg_prefix/bin/districtbuilder-setup"
 }
 
 do_strip() {
