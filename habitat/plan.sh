@@ -19,6 +19,8 @@ pkg_build_deps=(
   core/gcc
   core/zlib
   core/libjpeg-turbo
+  core/libxml2
+  core/libxslt
 )
 
 pkg_deps=(
