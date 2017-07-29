@@ -24,6 +24,7 @@ pkg_build_deps=(
 pkg_deps=(
   core/python2
   core/cacerts
+  core/tzdata
   jarvus/postgresql
 )
 
@@ -60,6 +61,9 @@ do_install() {
 
   cp -R django "$pkg_prefix/"
   pip install -r requirements.txt
+
+  # patch zoneinfo path
+  sed -i "s#/usr/share/zoneinfo#$(pkg_path_for tzdata)/share/zoneinfo#" "$pkg_prefix/lib/python2.7/site-packages/django/conf/__init__.py"
 }
 
 do_strip() {
