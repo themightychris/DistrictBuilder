@@ -22,6 +22,7 @@ pkg_build_deps=(
 )
 
 pkg_deps=(
+  core/gcc-libs
   core/python2
   core/cacerts
   core/tzdata
@@ -60,6 +61,13 @@ do_install() {
   export SYSTEM_CERTIFICATE_PATH="$(pkg_path_for cacerts)/ssl/certs"
 
   cp -R django "$pkg_prefix/"
+
+  export LD_LIBRARY_PATH="$LD_RUN_PATH"
+  export LIBRARY_PATH="$LD_RUN_PATH"
+
+  # we have to pre-install some modules in a certain order to get around `pip` dep problems
+  pip install $(grep numpy /src/requirements.txt)
+  pip install $(grep scipy /src/requirements.txt)
   pip install -r requirements.txt
 
   # patch zoneinfo path
