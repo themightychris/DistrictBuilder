@@ -19,15 +19,16 @@ pkg_build_deps=(
   core/gcc
   core/zlib
   core/libjpeg-turbo
-  core/libxml2
-  core/libxslt
 )
 
 pkg_deps=(
+  core/glibc
   core/gcc-libs
   core/python2
   core/cacerts
   core/tzdata
+  core/libxml2
+  core/libxslt
   jarvus/postgresql
 )
 
